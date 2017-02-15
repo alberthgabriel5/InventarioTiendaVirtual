@@ -9,17 +9,16 @@ class stock
     private $idStock;
     private $idProduct;
     private $idStore;
-    private $idQuantity;
+    private $quantity;
     private $levelStock;
     
     public function stock( $idProduct, $idStore, $idQuantity, $levelStock) {
         
         $this->idProduct = $idProduct;
         $this->idStore = $idStore;
-        $this->idQuantity = $idQuantity;
+        $this->quantity = $idQuantity;
         $this->levelStock = $levelStock;
     }
-    
     public function getIdStock() {
         return $this->idStock;
     }
@@ -32,8 +31,8 @@ class stock
         return $this->idStore;
     }
 
-    public function getIdQuantity() {
-        return $this->idQuantity;
+    public function getQuantity() {
+        return $this->quantity;
     }
 
     public function getLevelStock() {
@@ -52,8 +51,8 @@ class stock
         $this->idStore = $idStore;
     }
 
-    public function setIdQuantity($idQuantity) {
-        $this->idQuantity = $idQuantity;
+    public function setQuantity($quantity) {
+        $this->quantity = $quantity;
     }
 
     public function setLevelStock($levelStock) {
@@ -61,5 +60,5 @@ class stock
     }
 
 
-
+    
 }

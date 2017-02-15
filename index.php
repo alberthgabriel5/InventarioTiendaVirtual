@@ -7,9 +7,11 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Menu</title>
     </head>
     <body>
+        <b><a href="Presentation/Supplier/supplierCreateInterface.php">Registrar Proveedor</a></b>&nbsp;&nbsp;&nbsp;&nbsp;
+        <br> <a href="#">Agregar</a>
         <?php
         // put your code here
         ?>

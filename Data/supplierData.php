@@ -1,12 +1,11 @@
 <?php
-
-include_once 'Data.php';
-include_once '../Domain/supplier.php';
+include_once '../../Data/Data.php';
+include_once '../../Domain/supplier.php';
 /*
  * Manejo de las interacciones a base de datos con respecto al objeto provedoor
  */
 
-class supplierData 
+class supplierData extends Data
 {
     /*
      * Función que permite el registro de los proveedores en la base de datos
@@ -31,11 +30,14 @@ class supplierData
             $queryInsert = mysqli_query($conn, "update `tbsupplier` SET 'nameSupplier`= '".$supplier->getNameSupplier()."',`telephoneSupplier`='".$supplier->getTelephoneSupplier()."',`active`= 1 WHERE `emailSupplier`='".$supplier->getEmailSupplier()."'");
         } else {//Se realiza el insert en la base de datos si no existe
         $queryInsert = mysqli_query($conn, "insert into tbsupplier values (" .
-                $id . ",'" .
-                $supplier->getEmailClient() . "','" .
+                $id . ",'" .                
                 str_replace(' ', '+', $supplier->getNameSupplier()) . "','" .
                 $supplier->getEmailSupplier() . "','" .
-                $supplier->getTelephoneSupplier() ."',1);");
+                $supplier->getTelephoneSupplier() ."',b(1));");
+        }
+        if (!$queryInsert) {
+            echo 'MySQL Error: ' . mysqli_error();
+            exit;
         }
         mysqli_close($conn);
         return $queryInsert;
@@ -126,7 +128,7 @@ class supplierData
 
         $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
         $conn->set_charset('utf8');
-        $result = mysqli_query($conn, "select * from tbsupplier where active=1 order by idSupplier asc");
+        $result = mysqli_query($conn, "select * from tbsupplier order by idSupplier asc");
         $array = array();
         while ($row = mysqli_fetch_array($result)) {
             $currentData = new supplier($row['nameSupplier'], $row['emailSupplier'], $row['emailSupplier'],$row['telephoneSupplier']);
