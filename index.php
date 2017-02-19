@@ -14,6 +14,7 @@ and open the template in the editor.
         <a href="./Presentation/Supplier/supplierUpdateInterface.php">Actualizar Proveedor</a>&nbsp;&nbsp;&nbsp;
         <a href="./Presentation/Supplier/supplierActiveInterface.php">Activar Proveedor</a>&nbsp;&nbsp;&nbsp;
         <br> 
+        <a href="./Presentation/Stock/stockUpdateInterface.php">Actualizar Inventario</a>&nbsp;&nbsp;&nbsp;
         <a href="#">Agregar</a>
         <?php
         // put your code here

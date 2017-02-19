@@ -1,6 +1,6 @@
 <?php
 include_once 'Data.php';
-include_once '../Domain/stock.php';
+include_once '../../Domain/stock.php';
 
 
 /**
@@ -109,17 +109,36 @@ class stockData extends Data
         $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
         $conn->set_charset('utf8');
         $result = mysqli_query($conn, "select nameProduct from tbproduct where idProduct=".$idProduct.";");
-        $consult= mysqli_fetch_row($result);
+        $consult= mysqli_fetch_assoc($result);
         $name = $consult['nameProduct'];
         mysqli_close($conn);
         return $name;
     }
+    function getBrandProduct($idProduct){
+        $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $result = mysqli_query($conn, "select brand from tbproduct where idProduct=".$idProduct.";");
+        $consult= mysqli_fetch_assoc($result);
+        $name = $consult['brand'];
+        mysqli_close($conn);
+        return $name;
+    }
+    function getModelProduct($idProduct){
+        $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $result = mysqli_query($conn, "select model from tbproduct where idProduct=".$idProduct.";");
+        $consult= mysqli_fetch_assoc($result);
+        $name = $consult['model'];
+        mysqli_close($conn);
+        return $name;
+    }
+    //idProduct 	brand 	model 	price 	description 	idStore 	idTypeProduct 	nameProduct
     function getNameStore($idProduct){
         $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
         $conn->set_charset('utf8');
         $result = mysqli_query($conn, "select nameStore from tbStore where idStore=".$idProduct.";");
-        $consult= mysqli_fetch_row($result);
-        $name = $consult['nameProduct'];
+        $consult= mysqli_fetch_assoc($result);
+        $name = $consult['nameStore'];
         mysqli_close($conn);
         return $name;
     }

@@ -32,6 +32,14 @@ class stockBusiness extends stockData
     public function getNameStore($idProduct) {
         return $this->stockData->getNameStore($idProduct);
     }
+    public function getBrandProduct($idProduct) {
+        return $this->stockData->getBrandProduct($idProduct);
+    }
+
+    public function getModelProduct($idProduct) {
+        return $this->stockData->getModelProduct($idProduct);
+    }
+
 
 
 
