@@ -1,8 +1,8 @@
 <?php
 $idClient = $_POST['idClient'];
 $emailClient = $_POST['txtEmailClient'];
-    $userClient = $_POST['txtUserClient'];
-    $passwordClient = $_POST['txtPasswordClient'];
+$userClient = $_POST['txtUserClient'];
+$passwordClient = $_POST['txtPasswordClient'];
     $nameClient = $_POST['txtNameClient'];
     $lastNameFClient = $_POST['txtLastNameFClient'];
     $lastNameSClient = $_POST['txtLastNameSClient'];

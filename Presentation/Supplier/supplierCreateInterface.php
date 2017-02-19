@@ -15,8 +15,10 @@ Interfaz para registrarun nuevo proveedor
     <body>
         
         <!-- Menu -->
-        <b><a href="../../index.php">Inicio</a></b>&nbsp;&nbsp;&nbsp;&nbsp;
-        <br> <a href="">Provedor&nbsp;Nuevo</a>
+        <a href="../../index.php">Inicio</a>&nbsp;
+        <a href="">Provedor&nbsp;Nuevo</a>
+        <a href="supplierUpdateInterface.php">Actualizar</a>&nbsp;
+        <a href="supplierActiveInterface.php">Inactivos</a>&nbsp;
         <!-- Fin menu -->
 
       

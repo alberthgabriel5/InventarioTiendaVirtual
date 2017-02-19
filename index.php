@@ -10,8 +10,11 @@ and open the template in the editor.
         <title>Menu</title>
     </head>
     <body>
-        <b><a href="Presentation/Supplier/supplierCreateInterface.php">Registrar Proveedor</a></b>&nbsp;&nbsp;&nbsp;&nbsp;
-        <br> <a href="#">Agregar</a>
+        <b><a href="./Presentation/Supplier/supplierCreateInterface.php">Registrar Proveedor</a></b>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="./Presentation/Supplier/supplierUpdateInterface.php">Actualizar Proveedor</a>&nbsp;&nbsp;&nbsp;
+        <a href="./Presentation/Supplier/supplierActiveInterface.php">Activar Proveedor</a>&nbsp;&nbsp;&nbsp;
+        <br> 
+        <a href="#">Agregar</a>
         <?php
         // put your code here
         ?>

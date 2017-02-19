@@ -1,6 +1,6 @@
 <?php
 include_once '../../Data/stockData.php';
-class stockBusiness 
+class stockBusiness extends stockData
 {
     private $stockData;
     
@@ -10,7 +10,6 @@ class stockBusiness
     public function getAllStock(): array {
         return $this->stockData->getAllStock();
     }
-
     public function insertStock($stock) {
         return $this->stockData->insertStock($stock);
     }
@@ -18,6 +17,23 @@ class stockBusiness
     public function updateStock($stock) {
         return $this->stockData->updateStock($stock);
     }
+    
+    public function insertExist() {
+       return $this->stockData->insertExist();
+    }
+
+    public function stockExist($idProduct, $idStore) {
+        return $this->stockData->stockExist($idProduct, $idStore);
+    }
+    public function getNameProduct($idProduct) {
+        return $this->stockData->getNameProduct($idProduct);
+    }
+
+    public function getNameStore($idProduct) {
+        return $this->stockData->getNameStore($idProduct);
+    }
+
+
 
 
     
