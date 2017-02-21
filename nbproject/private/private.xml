@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/InventaryMGASolutions/index.php</file>
-            <file>file:/C:/xampp/htdocs/InventaryMGASolutions/Presentation/Stock/stockUpdateInterface.php</file>
-            <file>file:/C:/xampp/htdocs/InventaryMGASolutions/Business/Client/clientUpdateAction.php</file>
-            <file>file:/C:/xampp/htdocs/InventaryMGASolutions/Business/Stock/stockUpdateAction.php</file>
-            <file>file:/C:/xampp/htdocs/InventaryMGASolutions/Data/stockData.php</file>
-            <file>file:/C:/xampp/htdocs/InventaryMGASolutions/Business/Stock/stockBusiness.php</file>
+            <file>file:/opt/lampp/htdocs/InventarioTiendaVirtual/Business/Purchase/purchaseBusiness.php</file>
+            <file>file:/opt/lampp/htdocs/InventarioTiendaVirtual/Presentation/Purchase/PurchaseHistoryInterface.php</file>
+            <file>file:/opt/lampp/htdocs/InventarioTiendaVirtual/index.php</file>
+            <file>file:/opt/lampp/htdocs/InventarioTiendaVirtual/Data/purchaseData.php</file>
         </group>
     </open-files>
 </project-private>

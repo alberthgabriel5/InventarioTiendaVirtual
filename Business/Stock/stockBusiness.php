@@ -1,13 +1,13 @@
 <?php
 include_once '../../Data/stockData.php';
-class stockBusiness extends stockData
+class stockBusiness 
 {
     private $stockData;
     
     public function stockBusiness() {
         $this->stockData = new stockData();
     }
-    public function getAllStock(): array {
+    public function getAllStock() {
         return $this->stockData->getAllStock();
     }
     public function insertStock($stock) {
@@ -38,7 +38,12 @@ class stockBusiness extends stockData
 
     public function getModelProduct($idProduct) {
         return $this->stockData->getModelProduct($idProduct);
+        
     }
+    public function getNameTypeProduct($idProduct) {
+        return $this->stockData->getNameTypeProduct($idProduct);
+    }
+
 
 
 

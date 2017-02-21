@@ -28,7 +28,7 @@ class stockData extends Data
             $id = 1;
         }        
     if ($this->stockExist($stock->getIdProduct, $stock->getIdStore())) {// Actualiza y activa siya existe el correo
-            $queryInsert = mysqli_query($conn, "update `tbstock` SET 'quantity`= '".$stock->getQuantity()."',`levelStock`='".$stock->getLevelStock()."' WHERE where idProduct='" . $stock->getIdProduct() . "',idStore='" . $stock->getIdStore()."';");
+            $queryInsert = mysqli_query($conn, "update `tbstock` set 'quantity`= '".$stock->getQuantity()."',`levelStock`='".$stock->getLevelStock()."' WHERE where idProduct='" . $stock->getIdProduct() . "',idStore='" . $stock->getIdStore()."';");
         } else {//Se realiza el insert en la base de datos si no existe            
         $queryInsert = mysqli_query($conn, "insert into tbstock values (" .
                     $id . ",'" .
@@ -48,9 +48,9 @@ class stockData extends Data
         $total = mysqli_fetch_assoc($resultExist);
         mysqli_close($conn);
         if ($total['total'] >= 1){
-            return TRUE;
+            return 1;
         }else{
-            return FALSE;
+            return 0;
         }
     }
 
@@ -96,7 +96,7 @@ class stockData extends Data
         $conn->set_charset('utf8');
         $allproducts = mysqli_query($conn, "select * from tbproduct where active=1 order by idProduct asc");
         while ($product = mysqli_fetch_array($allproducts)) {     
-            if($this->stockExist($product['idProduct'], $product['idStore'])!=TRUE){
+            if($this->stockExist($product['idProduct'], $product['idStore'])){
                 $stock=new stock($product['idProduct'], $product['idStore'], 0, 0);
                 $this->insertStock($stock);
             }
@@ -105,12 +105,25 @@ class stockData extends Data
         return TRUE;
     }
     
+    
     function getNameProduct($idProduct){
         $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
         $conn->set_charset('utf8');
         $result = mysqli_query($conn, "select nameProduct from tbproduct where idProduct=".$idProduct.";");
         $consult= mysqli_fetch_assoc($result);
         $name = $consult['nameProduct'];
+        mysqli_close($conn);
+        return $name;
+    }
+    function getNameTypeProduct($idProduct){
+        $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $result = mysqli_query($conn, "select idTypeProduct from tbproduct where idProduct=".$idProduct.";");
+        $consult= mysqli_fetch_assoc($result);
+        $idType = $consult['idTypeProduct'];
+        $result2 = mysqli_query($conn, "select nameTypeProduct from tbtypeproduct where idTypeProduct=".$idType.";");
+        $consult2= mysqli_fetch_assoc($result2);
+        $name = $consult2['nameTypeProduct'];
         mysqli_close($conn);
         return $name;
     }
@@ -133,15 +146,16 @@ class stockData extends Data
         return $name;
     }
     //idProduct 	brand 	model 	price 	description 	idStore 	idTypeProduct 	nameProduct
-    function getNameStore($idProduct){
+    function getNameStore($idStore){
         $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
         $conn->set_charset('utf8');
-        $result = mysqli_query($conn, "select nameStore from tbStore where idStore=".$idProduct.";");
+        $result = mysqli_query($conn, "select nameStore from tbstore where idStore=".$idStore.";");
         $consult= mysqli_fetch_assoc($result);
         $name = $consult['nameStore'];
         mysqli_close($conn);
         return $name;
     }
+    
     
     
 }

@@ -6,7 +6,9 @@
         <title>Actualizar Proveedor</title>
     </head>
     <body>
-        <b><a href="../../index.php">Inicio</a></b>&nbsp;        
+        <b><a href="../../index.php">Inicio</a></b>&nbsp;
+        <b><a href="../Purchase/PurchaseHistoryInterface.php">Historial de Compras</a></b>&nbsp;
+        
         <a href="">Actualizar</a>
         
         <br><br><br>
@@ -32,6 +34,7 @@
         <form name="updateStock" method="post" action="../../Business/Stock/stockUpdateAction.php">           
 
             <input type="hidden" id="idStock" name="idStock" value="<?php echo '' . $tem->getIdStock() . ''; ?>">
+            <input type="hidden" id="idProductStock" name="idProductStock" value="<?php echo '' . $tem->getIdProduct() . ''; ?>">
            <td> <input type="reset" id="txtNameStock" name="txtNameStock" 
                    data-validation="custom" data-validation-regexp="^([a-zA-Z]+)$"
                    placeholder="Nombre Producto" size="10" maxlength="15" value="<?php echo '' . $stockBusiness->getNameProduct($tem->getIdProduct()) . ''; ?>" > </td>
@@ -49,6 +52,7 @@
             <td><input type="number" id="txtLevel" name="txtLevel" 
                     value="<?php echo '' . $tem->getLevelStock() . ''; ?>"></td>
             <td><input  type="submit" id="btnUpdate" name="btnUpdate" value="Actualizar" ></td>
+            <td><input  type="submit" id="btnPurchase" name="btnPurchase" value="Comprar" ></td>
             </tr>
         </form>
         <?php
