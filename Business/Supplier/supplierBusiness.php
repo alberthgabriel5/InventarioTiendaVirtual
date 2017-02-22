@@ -15,15 +15,15 @@ class supplierBusiness
         return $this->supplierData->desactiveSupplier($supplier);
     }
 
-    public function getAllSupplier(): array {
+    public function getAllSupplier() {
         return $this->supplierData->getAllSupplier();
     }
 
-    public function getAllSupplierActive(): array {
+    public function getAllSupplierActive() {
         return $this->supplierData->getAllSupplierActive();
     }
 
-    public function getAllSupplierDesactive(): array {
+    public function getAllSupplierDesactive() {
         return $this->supplierData->getAllSupplierDesactive();
     }
 

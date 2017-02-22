@@ -20,19 +20,21 @@
         <a href="">Inactivos</a> 
         <br>
         <br>
-        <select id="supplierActive" onclick="">
-            <option value="all">Todos</option>
-            <option value="active">Activos</option>
+        <!-- select id="supplierActive" onclick="">
             <option value="desactive">Inactivos</option>
-        </select>
+             <option value="active">Activos</option>
+            <option value="all">Todos</option>
+           
+            
+        </select -->
         <br>
         <br>    
            
         
         <?php
         include_once '../../Business/Supplier/supplierBusiness.php';
-        $supplierBusiness = new supplierBusiness();        
-        $result1 = $supplierBusiness->getAllSupplierDesactive();
+        $supplierBusinessActive = new supplierBusiness();        
+        $result1 = $supplierBusinessActive->getAllSupplierDesactive();
         foreach ($result1 as $tem) {
             ?>          
         <form name="activeSupplier" method="post" action="../../Business/Supplier/supplierActiveAction.php">           

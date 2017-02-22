@@ -17,7 +17,7 @@ and open the template in the editor.
         <a href="./Presentation/Stock/stockUpdateInterface.php">Actualizar Inventario</a>&nbsp;&nbsp;&nbsp;
         <br> 
         <a href="./Presentation/Purchase/PurchaseHistoryInterface.php">Historial de Compras</a>&nbsp;&nbsp;&nbsp;
-        <a href="#">Agregar</a>
+        <a href="#">Inicio</a>
         <?php
         // put your code here
         ?>
