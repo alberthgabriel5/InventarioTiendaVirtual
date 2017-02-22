@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/opt/lampp/htdocs/InventarioTiendaVirtual/Business/Purchase/purchaseBusiness.php</file>
-            <file>file:/opt/lampp/htdocs/InventarioTiendaVirtual/Presentation/Purchase/PurchaseHistoryInterface.php</file>
-            <file>file:/opt/lampp/htdocs/InventarioTiendaVirtual/index.php</file>
-            <file>file:/opt/lampp/htdocs/InventarioTiendaVirtual/Data/purchaseData.php</file>
+            <file>file:/opt/lampp/htdocs/InventarioTiendaVirtual/Business/Stock/stockBusiness.php</file>
+            <file>file:/opt/lampp/htdocs/InventarioTiendaVirtual/Business/Stock/stockUpdateAction.php</file>
+            <file>file:/opt/lampp/htdocs/InventarioTiendaVirtual/Data/stockData.php</file>
+            <file>file:/opt/lampp/htdocs/InventarioTiendaVirtual/Presentation/Stock/stockUpdateInterface.php</file>
         </group>
     </open-files>
 </project-private>
