@@ -2,8 +2,8 @@
 $purchase=$_POST['insert'];
 $idProduct =$_POST['cbTypeProduct'];
 $quantity= $_POST['numQuantity'];
-$porcent= $_POST['numPorcent'];
 $pay= $_POST['pay'];
+include_once './purchaseBusiness.php';
 
 
 
@@ -13,11 +13,8 @@ if ($purchase) {
 	ini_set("soap.wsdl_cache_enabled", "0");
 	
 	$client = new SoapClient("http://localhost/SupplierWebService/scramble.wsdl");
-	$purchaseBusiness = new purchaseBusiness();
-	$descriptionPurchase= $purchaseBusiness->getNameTypeProduct($idProductStock);
-        $quantityPurchase= $level-$quantity;
-		
-	$resulte = $client->purchase($idProduct,$quantity,$porcent,$pay);
+	$purchaseBusiness = new purchaseBusiness(); 
+	$resulte = $client->purchase($idProduct,$quantity,$pay);
         
         header('location: ../../Presentation/Purchase/purchaseCreateInterface.php?'.$resulte.'');
            

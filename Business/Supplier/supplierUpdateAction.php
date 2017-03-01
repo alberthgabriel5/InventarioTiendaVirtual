@@ -20,8 +20,8 @@ if ($desactive) {
     
 }
 elseif ($update) {
-    include './SupplierBusiness.php';
-    include_once  '../../Domain/Supplier.php';
+    include_once './supplierBusiness.php';
+    include_once  '../../Domain/supplier.php';
     if (strlen($nameSupplier) >= 2 && strlen($emailSupplier) >= 2 && strlen($telSupplier) >= 2 ) {
         $supplier = new Supplier($nameSupplier,$emailSupplier,$telSupplier);
         $supplier->setIdSupplier($idSupplier);

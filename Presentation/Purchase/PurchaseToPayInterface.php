@@ -3,11 +3,11 @@
     <head> 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Compras Realizadas</title>
+        <title>Compras por Pagar</title>
     </head>
     <body>
         <b><a href="../../index.php">Inicio</a></b>&nbsp;        
-        <a href="">Historial de Compras</a>
+            <a href="">Cuentas por Pagar</a>
         
         <br><br><br>
         <table  >
@@ -27,7 +27,7 @@
             include_once '../../Domain/purchase.php';
             $purchaseBusiness = new purchaseBusiness();
             //$true=$stockBusiness->insertExist();
-            $resultPurchase = $purchaseBusiness->getAllPurchase();
+            $resultPurchase = $purchaseBusiness->getAllPurchaseToPay();
                //$tem = new purchase($idSupplier, $datePurchase, $descriptionPurchase, $idProduct, $totalPurchase);
             foreach ($resultPurchase as $tem) {
                 ?>

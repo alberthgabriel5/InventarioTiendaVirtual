@@ -45,6 +45,11 @@ class purchaseBusiness extends purchaseData
     public function getTypeProduct() {
         return $this->purchaseData->getTypeProduct();
     }
+    
+    public function getAllPurchaseToPay(){
+        return $this->purchaseData->getAllPurchaseToPay();
+    }
+
 
 
 

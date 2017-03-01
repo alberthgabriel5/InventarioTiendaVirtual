@@ -37,3 +37,5 @@ CREATE TABLE `tboutlay` (
   `dateOutlay` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+ALTER TABLE `tbpurchasingsupplier` CHANGE `typePay` `typePay` BIT(1) NULL;
+ALTER TABLE `tbpurchasingsupplierpayable` ADD PRIMARY KEY( `idPurchase`);

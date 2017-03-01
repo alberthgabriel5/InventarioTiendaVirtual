@@ -3,7 +3,7 @@
     <head> 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Actualizar Proveedor</title>
+        <title>Actualizar Inventario</title>
     </head>
     <body>
         <b><a href="../../index.php">Inicio</a></b>&nbsp;

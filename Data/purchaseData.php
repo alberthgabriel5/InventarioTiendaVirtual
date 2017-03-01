@@ -18,18 +18,48 @@ class purchaseData extends Data
 
         $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
         $conn->set_charset('utf8');
-        $result = mysqli_query($conn, "select * from tbpurchasingsupplier order by idPurchases asc");
+        $result = mysqli_query($conn, "select * from tbpurchasingsupplier order by idPurchase asc");
         $array = array();
         while ($row = mysqli_fetch_array($result)) {
-            $currentData = new purchase($row['idSupplier'], $row['datePurchases'], $row['descriptionPurchases'],$row['product'],$row['totalPurchases']);
-            $currentData->setIdPurchase($row['idPurchases']);           
+            $currentData = new purchase($row['billNum'],$row['idProduct'],
+                    $row['idSupplier'], $row['datePurchases'], 
+                    $row['descriptionPurchases'],$row['totalPurchases'],
+                    $row['grossPrice'],$row['netPrice'],$row['received']);
+            $currentData->setIdPurchase($row['idPurchase']);           
             array_push($array, $currentData);
              //echo ''.$currentData->getIdSupplier().' '.$currentData->getIdProduct().'<br>';
         }
         //echo 'obtuvo los valores';
         //exit;
+        mysqli_close($conn);
         return $array;
     }//fin función getSupplier
+   /**
+     * Función que permite la obtención de todos los registros de 
+     * provedores de la base de datos
+     * @return array
+     */
+    function getAllPurchaseToPay() {
+
+        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $result = mysqli_query($conn, "select * from tbpurchasingsupplierpayable order by idPurchase asc");
+        $array = array();
+        while ($row = mysqli_fetch_array($result)) {
+            $currentData = new purchase($row['billNum'],$row['idProduct'],
+                    $row['idSupplier'], $row['datePurchases'], 
+                    $row['descriptionPurchases'],$row['totalPurchases'],
+                    $row['grossPrice'],$row['netPrice'],$row['received']);
+            $currentData->setIdPurchase($row['idPurchase']);           
+            array_push($array, $currentData);
+             //echo ''.$currentData->getIdSupplier().' '.$currentData->getIdProduct().'<br>';
+        }
+        //echo 'obtuvo los valores';
+        //exit;
+        mysqli_close($conn);
+        return $array;
+    }//fin función getSupplier
+   
     /**
      * Función que permite la obtención de todos los registros de 
      * un provedor de la base de datos
