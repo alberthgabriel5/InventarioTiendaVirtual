@@ -1,13 +1,14 @@
 <?php
 include_once 'Data.php';
 include_once '../../Domain/purchase.php';
+include_once '../../Domain/typeProduct.php';
+include_once '../../Domain/Product.php';
 /* 
  * Clase para transacciones SQL de las compras a provedor
  * 
  */
 class purchaseData extends Data
 {
-    
    /**
      * Función que permite la obtención de todos los registros de 
      * provedores de la base de datos
@@ -83,6 +84,82 @@ class purchaseData extends Data
         $name = $consult['model'];
         mysqli_close($conn);
         return $name;
+    }       
+    /***
+     * Función que permite la obtención de todos los registro de 
+     * producto de la base de datos
+     */
+    function getTypeProduct(){     
+        
+        $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $result = mysqli_query($conn,"select * from tbtypeproduct where active = 1 order by idtypeproduct asc;");
+        $array = array();
+        while ($row = mysqli_fetch_array($result)) {
+            $currentData = new TypeProduct($row['nameTypeProduct']);
+            $currentData->setIdTypeProduct($row['idTypeProduct']);
+            array_push($array, $currentData);
+        }
+        return $array;
+    }//fin función getTypeProducts    
+    /*     * *
+     * Función que permite la obtención de todos los registro de 
+     * producto de la base de datos
+     */
+    function getProducts() {
+
+        $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $result = mysqli_query($conn, "select  * from `tbproduct` where active != 0 order by brand asc;");
+        $array = array();
+        while ($row = mysqli_fetch_array($result)) {
+            $currentData = new Product($row['brand'], $row['model'], $row['price'], "", $row['description'], $row['nameProduct'], $row['characteristics'], $row['serie']);
+            $currentData->setIdProduct($row['idProduct']);
+
+            $idProduct = $row['idProduct'];
+            $resultImage = mysqli_query($conn, "select * from tbimageproduct where idProduct = " . $idProduct);
+            while ($rowImage = mysqli_fetch_array($resultImage)) {
+                $currentData->setPathImages($rowImage['pathImage']);
+            }
+            $colors = "";
+            $resultColors = mysqli_query($conn, "select * from tbproductcolor where idproduct = " . $idProduct);
+            while ($rowColor = mysqli_fetch_array($resultColors)) {
+                $colors .= $rowColor['color'] . ';';
+            }
+            $currentData->setColor($colors);
+
+            array_push($array, $currentData);
+        }
+        mysqli_close($conn);
+        return $array;
+    }    
+   
+    function getProductsTypeProduct($idTypeProduct){
+        $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $result = mysqli_query($conn, "select  * from `tbproduct` where active != 0 and idtypeproduct = ".$idTypeProduct." order by brand asc;");
+        $array = array();
+        while ($row = mysqli_fetch_array($result)) {
+            $currentData = new Product($row['brand'], $row['model'], $row['price'], "", $row['description'], $row['nameProduct'], $row['characteristics'], $row['serie']);
+            $currentData->setIdProduct($row['idProduct']);
+
+            $idProduct = $row['idProduct'];
+            $resultImage = mysqli_query($conn, "select * from tbimageproduct where idProduct = " . $idProduct);
+            while ($rowImage = mysqli_fetch_array($resultImage)) {
+                $currentData->setPathImages($rowImage['pathImage']);
+            }
+            $colors = "";
+            $resultColors = mysqli_query($conn, "select * from tbproductcolor where idproduct = " . $idProduct);
+            while ($rowColor = mysqli_fetch_array($resultColors)) {
+                $colors .= $rowColor['color'] . ';';
+            }
+            $currentData->setColor($colors);
+
+            array_push($array, $currentData);
+        }
+        mysqli_close($conn);
+        return $array;
     }
+    
 }
 

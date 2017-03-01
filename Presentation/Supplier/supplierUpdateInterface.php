@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+|<!DOCTYPE html>
 <html>
     <head> 
         <meta charset="utf-8">
@@ -27,7 +27,7 @@
             <input type="email" id="txtEmailSupplierU" name="txtEmailSupplierU" 
                    data-validation="custom" data-validation-regexp="^([a-zA-Z]+)$"
                    placeholder="ejemplo@email.com" value="<?php echo '' . $tem->getEmailSupplier() . ''; ?>">
-            <input type="text" id="txtTelSupplierU" name="txtTelSupplierU" 
+            <input type=tel id="txtTelSupplierU" name="txtTelSupplierU" pattern="[0-9]{9}"
                    placeholder="Telefono" value="<?php echo '' . $tem->getTelephoneSupplier() . ''; ?>">
             <input  type="submit" id="btnUpdate" name="btnUpdate" value="Actualizar" >
             <input  type="submit" id="btnDelete" name="btnDesactive" value="Desactivar" >

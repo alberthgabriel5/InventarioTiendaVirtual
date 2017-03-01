@@ -1,6 +1,6 @@
 <?php
 include_once '../../Data/purchaseData.php';
-class purchaseBusiness
+class purchaseBusiness extends purchaseData
 {
     private $purchaseData;
     
@@ -34,6 +34,18 @@ class purchaseBusiness
     public function getNameProduct($idProduct) {
         return $this->purchaseData->getNameProduct($idProduct);
     }
+    public function getProducts(){
+        return $this->purchaseData->getProducts();
+    }
+
+    public function getProductsTypeProduct($idTypeProduct){
+        return $this->purchaseData->getProductsTypeProduct($idTypeProduct);
+    }
+
+    public function getTypeProduct() {
+        return $this->purchaseData->getTypeProduct();
+    }
+
 
 
 }

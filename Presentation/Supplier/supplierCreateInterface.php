@@ -35,7 +35,7 @@ Interfaz para registrarun nuevo proveedor
             <input type="email" id="txtEmailSupplier" name="txtEmailSupplier" 
                    data-validation="custom" data-validation-regexp="^([a-zA-Z]+)$"
                    placeholder="E-mail"> *
-            <input type="text" id="txtTelSupplier" name="txtTelSupplier" placeholder="Telefono">*
+            <input type=tel id="txtTelSupplier" name="txtTelSupplier" placeholder="Telefono" pattern="[0-9]{9}">*
             
             <input  type="submit" id="btnInsert" name="btnInsert" value="Insertar" >
             <input  type="submit" id="btnClean" name="btnClean" value="Limpiar" >
