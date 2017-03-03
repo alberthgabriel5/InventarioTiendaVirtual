@@ -8,6 +8,9 @@
     <body>
         <b><a href="../../index.php">Inicio</a></b>&nbsp;        
             <a href="">Cuentas por Pagar</a>
+            <b><a href="../Purchase/PurchaseHistoryInterface.php">Historial de Compras</a></b>&nbsp;
+            <b><a href="../Purchase/purchaseCreateInterface.php">Comprar Nuevo</a></b>&nbsp;
+        
         
         <br><br><br>
         <table  >

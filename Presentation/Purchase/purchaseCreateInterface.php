@@ -18,6 +18,7 @@ $purchaseBusinessNew= new purchaseBusiness();
     <body>
         <b><a href="../../index.php">Inicio</a></b>&nbsp;
         <b><a href="../Purchase/PurchaseHistoryInterface.php">Historial de Compras</a></b>&nbsp;
+        <b><a href="../Purchase/PurchaseToPayInterface.php">Compras por Pagar</a></b>&nbsp;
 
         <a href="">Comprar</a>
 

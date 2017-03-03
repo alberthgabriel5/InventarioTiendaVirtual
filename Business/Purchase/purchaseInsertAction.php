@@ -16,8 +16,7 @@ if ($purchase) {
 	$purchaseBusiness = new purchaseBusiness(); 
 	$resulte = $client->purchase($idProduct,$quantity,$pay);
         
-        header('location: ../../Presentation/Purchase/purchaseCreateInterface.php?'.$resulte.'');
-           
+        header('location: ../../Presentation/Purchase/purchaseCreateInterface.php?'.$resulte.'');         
         
         
 }else{

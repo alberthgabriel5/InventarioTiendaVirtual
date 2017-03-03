@@ -7,8 +7,9 @@
     </head>
     <body>
         <b><a href="../../index.php">Inicio</a></b>&nbsp;        
-        <a href="">Historial de Compras</a>
-        
+        <a href="">Historial de Compras</a>        
+        <b><a href="../Purchase/PurchaseToPayInterface.php">Compras por Pagar</a></b>&nbsp;
+        <b><a href="../Purchase/purchaseCreateInterface.php">Comprar Nuevo</a></b>&nbsp;
         <br><br><br>
         <table  >
             <thead>

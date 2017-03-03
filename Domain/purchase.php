@@ -17,17 +17,7 @@ class purchase
     private $canceled;
     private $recived;
     
-    public function purchase($billNum, $idProduct, $idSupplier, $datePurchase, $descriptionPurchase, $totalPurchase, $grossPrice, $netPrice, $recived) {
-        $this->billNum = $billNum;
-        $this->idProduct = $idProduct;
-        $this->idSupplier = $idSupplier;
-        $this->datePurchase = $datePurchase;
-        $this->descriptionPurchase = $descriptionPurchase;
-        $this->totalPurchase = $totalPurchase;
-        $this->grossPrice = $grossPrice;
-        $this->netPrice = $netPrice;
-        $this->recived = $recived;
-    }
+    
     public function getIdPurchase() {
         return $this->idPurchase;
     }

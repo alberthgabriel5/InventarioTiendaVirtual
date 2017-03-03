@@ -21,10 +21,17 @@ class purchaseData extends Data
         $result = mysqli_query($conn, "select * from tbpurchasingsupplier order by idPurchase asc");
         $array = array();
         while ($row = mysqli_fetch_array($result)) {
-            $currentData = new purchase($row['billNum'],$row['idProduct'],
-                    $row['idSupplier'], $row['datePurchases'], 
-                    $row['descriptionPurchases'],$row['totalPurchases'],
-                    $row['grossPrice'],$row['netPrice'],$row['received']);
+            $currentData = new purchase();
+            $currentData->setIdPurchase($row['idPurchase']);
+            $currentData->setBillNum($row['billNum']);
+            $currentData->setIdProduct($row['idProduct']);
+            $currentData->setIdSupplier($row['idSupplier']);
+            $currentData->setDatePurchase($row['datePurchases']);
+            $currentData->setDescriptionPurchase($row['descriptionPurchases']);
+            $currentData->setTotalPurchase($row['totalPurchases']);
+            $currentData->setGrossPrice($row['grossPrice']);
+            $currentData->setNetPrice($row['netPrice']);
+            $currentData->setRecived($row['received']);
             $currentData->setIdPurchase($row['idPurchase']);           
             array_push($array, $currentData);
              //echo ''.$currentData->getIdSupplier().' '.$currentData->getIdProduct().'<br>';
@@ -46,11 +53,18 @@ class purchaseData extends Data
         $result = mysqli_query($conn, "select * from tbpurchasingsupplierpayable order by idPurchase asc");
         $array = array();
         while ($row = mysqli_fetch_array($result)) {
-            $currentData = new purchase($row['billNum'],$row['idProduct'],
-                    $row['idSupplier'], $row['datePurchases'], 
-                    $row['descriptionPurchases'],$row['totalPurchases'],
-                    $row['grossPrice'],$row['netPrice'],$row['received']);
-            $currentData->setIdPurchase($row['idPurchase']);           
+            $currentData = new purchase();
+            $currentData->setIdPurchase($row['idPurchase']);
+            $currentData->setBillNum($row['billNum']);
+            $currentData->setIdProduct($row['idProduct']);
+            $currentData->setIdSupplier($row['idSupplier']);
+            $currentData->setDatePurchase($row['datePurchases']);
+            $currentData->setDescriptionPurchase($row['descriptionPurchases']);
+            $currentData->setTotalPurchase($row['totalPurchases']);
+            $currentData->setGrossPrice($row['grossPrice']);
+            $currentData->setNetPrice($row['netPrice']);
+            $currentData->setRecived($row['received']);
+            $currentData->setCanceled($row['canceled']);                       
             array_push($array, $currentData);
              //echo ''.$currentData->getIdSupplier().' '.$currentData->getIdProduct().'<br>';
         }
@@ -58,8 +72,7 @@ class purchaseData extends Data
         //exit;
         mysqli_close($conn);
         return $array;
-    }//fin función getSupplier
-   
+    }//fin función getSupplier   
     /**
      * Función que permite la obtención de todos los registros de 
      * un provedor de la base de datos
@@ -190,6 +203,134 @@ class purchaseData extends Data
         mysqli_close($conn);
         return $array;
     }
+    
+    /*
+     * Función que permite el registro de las compras a los provedores en la base de datos
+     * primero consulta el id para crear un consecutivo y luego registra el nuevo
+     * @param type $purchase
+     * @return boolean
+     */
+    function insertPurchase($purchase) {
+        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+
+        
+        $bill = ((int) $id * 1000) + (int) $purchase->getIdProduct();
+        $supplier = $this->getIdSupplier($purchase->getIdProduct());
+        $descrition = $bill . $supplier;
+
+        if ($purchase->getCanceled() == 1) {
+            $id = $this->getIdPurchase();
+            $sql = "insert into tbpurchasingsupplier values (" .
+            
+                    $id . "," .
+                    $bill . "," .
+                    $purchase->getIdProduct() . "," .
+                    $supplier . ",'" .
+                    date('Y-m-d') . "'," .
+                    $descrition . "," .
+                    $purchase->getTotalPurchase() . "," .
+                    $purchase->getGrossPrice() . "," .
+                    $purchase->getNetPrice() . ",0);";
+            $queryInsert = mysqli_query($conn, $sql);
+        } else {
+            $id = $this->getIdPurchaseToPay();
+            $sql = "insert into tbpurchasingsupplierpayable values (" .
+                    $id . "," .
+                    $bill . "," .
+                    $purchase->getIdProduct() . "," .
+                    $supplier . ",'" .
+                    date('Y-m-d') . "'," .
+                    $descrition . "," .
+                    $purchase->getTotalPurchase() . "," .
+                    $purchase->getGrossPrice() . "," .
+                    $purchase->getNetPrice() . ",0,0);";
+            $queryInsert = mysqli_query($conn, $sql);
+            
+        }
+        if (!$queryInsert) {
+            echo 'MySQL Error: ' . mysqli_error() . '<br>'.$sql;
+            exit;
+        }
+        if ($queryInsert) {
+            $queryInsert2 = mysqli_query($conn, "insert into  tboutlay values(" .
+                    $this->getIdOutlay() . "," . $purchase->getCanceled() . "," .
+                    $supplier . ",'" . date('Y-m-d') . "');");
+            mysqli_close($conn);
+            if (!$queryInsert2) {
+            echo 'MySQL Error: ' . mysqli_error() . '<br>'.$sql;
+            exit;
+            }
+            return $queryInsert2;
+        } else {
+            return $queryInsert;
+        }
+    }//fin function insertpurchase  
+    
+    function getIdPurchase() {
+        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+//Se consulta por el ultimo id registrado para generar el consecutivo
+        $resultID = mysqli_query($conn, "select idPurchase from tbpurchasingsupplier order by idPurchase desc limit 1");
+        $row = mysqli_fetch_array($resultID);
+        
+        if (sizeof($row) >= 1) {
+            $id = $row['idPurchase'] + 1;
+        } else {
+            $id = 1;
+        }
+        return $id;
+    }
+    function getIdPurchaseToPay() {
+        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+//Se consulta por el ultimo id registrado para generar el consecutivo
+        $resultID = mysqli_query($conn, "select idPurchase from tbpurchasingsupplierpayable order by idPurchase desc limit 1");
+        $row = mysqli_fetch_array($resultID);
+        
+        if (sizeof($row) >= 1) {
+            $id = $row['idPurchase'] + 1;
+        } else {
+            $id = 1;
+        }
+        return $id;
+    }
+
+    function getIdOutlay() {
+        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+//Se consulta por el ultimo id registrado para generar el consecutivo
+        $resultID = mysqli_query($conn, "select idOutlay from tboutlay order by idOutlay desc limit 1");
+        $row = mysqli_fetch_array($resultID);
+        if (sizeof($row) >= 1) {
+            $id = $row['idOutlay'] + 1;
+        } else {
+            $id = 1;
+        }
+        return $id;
+    }
+    
+    function getIdSupplier($idProduct) {
+        $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $result = mysqli_query($conn, "select idSupplierty from tbsupplierxproduct where idProduct=" . $idProduct . ";");
+        $consult = mysqli_fetch_assoc($result);
+        $name = $consult['idSupplierty'];
+        mysqli_close($conn);
+        return $name;
+    }
+
+    function getPrice($idProduct) {
+
+        $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $result = mysqli_query($conn, "select price from `tbproduct` where idProduct=" . $idProduct . " ;");
+        $row = mysqli_fetch_assoc($result);
+        $answer = $row['price'];
+        mysqli_close($conn);
+        return $answer;
+    }
+
     
 }
 

@@ -1,5 +1,6 @@
 <?php
 include_once '../../Data/purchaseData.php';
+include_once '../../Domain/purchase.php';
 class purchaseBusiness extends purchaseData
 {
     private $purchaseData;
