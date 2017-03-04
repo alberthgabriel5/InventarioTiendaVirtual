@@ -1,4 +1,4 @@
- <?php
+<?php
         include_once '../../Business/Supplier/supplierBusiness.php';
         $supplierBusiness = new supplierBusiness();
         ?>
@@ -19,6 +19,7 @@
         <a href="supplierUpdateInterface.php">Actualizar</a>&nbsp;
         <a href="">Inactivos</a> 
         <br>
+    
         <br>
         <!-- select id="supplierActive" onclick="">
             <option value="desactive">Inactivos</option>
@@ -59,6 +60,7 @@
         ?>
     </body>
 </html>
+
 
 
 

@@ -20,7 +20,7 @@
                 <td><strong>Tienda</strong></td>
                 <td><strong>Existencias</strong></td>
                 <td><strong>Nivel</strong></td>
-                <td><strong>Actualizar</strong></td>
+                
             </tr>
           <?php
           include_once '../../Business/Stock/stockBusiness.php';
@@ -52,7 +52,7 @@
             <td><input type="number" id="txtLevel" name="txtLevel" 
                     value="<?php echo '' . $tem->getLevelStock() . ''; ?>"></td>
             <td><input  type="submit" id="btnUpdate" name="btnUpdate" value="Actualizar" ></td>
-            <td><input  type="submit" id="btnPurchase" name="btnPurchase" value="Comprar" ></td>
+            
             </tr>
         </form>
         <?php

@@ -50,6 +50,51 @@ class purchaseBusiness extends purchaseData
     public function getAllPurchaseToPay(){
         return $this->purchaseData->getAllPurchaseToPay();
     }
+    
+    public function getAllPurchaseToPayUnrecived() {
+        return $this->purchaseData->getAllPurchaseToPayUnrecived();
+    }
+
+    public function getAllPurchaseUnrecived() {
+        return $this->purchaseData->getAllPurchaseUnrecived();
+    }
+
+    public function getIdOutlay() {
+        return $this->purchaseData->getIdOutlay();
+    }
+
+    public function getIdPurchase() {
+        return $this->purchaseData->getIdPurchase();
+    }
+
+    public function getIdPurchaseToPay(){
+        return $this->purchaseData->getIdPurchaseToPay();
+    }
+
+    public function getIdSupplier($idProduct) {
+        return $this->purchaseData->getIdSupplier($idProduct);
+    }
+
+    public function getPrice($idProduct) {
+        return $this->purchaseData->getPrice($idProduct);
+    }
+  
+
+    public function getStock($idProduct) {
+        return $this->purchaseData->getStock($idProduct);
+    }
+
+    public function receivedPurchase($idPurchase, $idProduct, $quantity): string {
+        return $this->purchaseData->receivedPurchase($idPurchase, $idProduct, $quantity);
+    }
+
+    public function receivedPurchaseDebts($idPurchase, $idProduct, $quantity): string {
+        return $this->purchaseData->receivedPurchaseDebts($idPurchase, $idProduct, $quantity);
+        
+        
+    }
+
+
 
 
 

@@ -10,10 +10,12 @@
             <a href="">Cuentas por Pagar</a>
             <b><a href="../Purchase/PurchaseHistoryInterface.php">Historial de Compras</a></b>&nbsp;
             <b><a href="../Purchase/purchaseCreateInterface.php">Comprar Nuevo</a></b>&nbsp;
+            <b><a href="../Purchase/PurchaseToPayPDF.php">Exportar</a></b>&nbsp;
+            
         
         
         <br><br><br>
-        <table  >
+        <table >
             <thead>
             <tr>
                 <th colspan="1"><strong>Provedor</strong></th> <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -64,6 +66,9 @@
             <h5>-- Fin del Historial --</h5>
                 </th>
             </tr>
+            
+                    
+            
         </tbody>
         </table>
     </body>

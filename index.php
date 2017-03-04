@@ -19,6 +19,7 @@ and open the template in the editor.
         <a href="./Presentation/Purchase/PurchaseHistoryInterface.php">Historial de Compras</a>&nbsp;&nbsp;&nbsp;
         <a href="./Presentation/Purchase/PurchaseToPayInterface.php">Compras por Pagar</a>&nbsp;&nbsp;&nbsp;
         <a href="./Presentation/Purchase/purchaseCreateInterface.php">Registrar Nueva Compra</a>&nbsp;&nbsp;&nbsp;
+        <a href="./Presentation/Purchase/purchaseRecivedInterface.php">Recibir Compra</a>&nbsp;&nbsp;&nbsp;
         <a href="#">Inicio</a>
         <?php
         // put your code here

@@ -73,6 +73,70 @@ class purchaseData extends Data
         mysqli_close($conn);
         return $array;
     }//fin función getSupplier   
+   /**
+     * Función que permite la obtención de todos los registros de 
+     * provedores de la base de datos
+     * @return array
+     */
+    function getAllPurchaseUnrecived() {
+
+        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $result = mysqli_query($conn, "select * from tbpurchasingsupplier where received=0 order by idPurchase asc");
+        $array = array();
+        while ($row = mysqli_fetch_array($result)) {
+            $currentData = new purchase();
+            $currentData->setIdPurchase($row['idPurchase']);
+            $currentData->setBillNum($row['billNum']);
+            $currentData->setIdProduct($row['idProduct']);
+            $currentData->setIdSupplier($row['idSupplier']);
+            $currentData->setDatePurchase($row['datePurchases']);
+            $currentData->setDescriptionPurchase($row['descriptionPurchases']);
+            $currentData->setTotalPurchase($row['totalPurchases']);
+            $currentData->setGrossPrice($row['grossPrice']);
+            $currentData->setNetPrice($row['netPrice']);
+            $currentData->setRecived($row['received']);
+            $currentData->setIdPurchase($row['idPurchase']);           
+            array_push($array, $currentData);
+             //echo ''.$currentData->getIdSupplier().' '.$currentData->getIdProduct().'<br>';
+        }
+        //echo 'obtuvo los valores';
+        //exit;
+        mysqli_close($conn);
+        return $array;
+    }//fin función getSupplier
+   /**
+     * Función que permite la obtención de todos los registros de 
+     * provedores de la base de datos
+     * @return array
+     */
+    function getAllPurchaseToPayUnrecived() {
+
+        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $result = mysqli_query($conn, "select * from tbpurchasingsupplierpayable where received=0 order by idPurchase asc");
+        $array = array();
+        while ($row = mysqli_fetch_array($result)) {
+            $currentData = new purchase();
+            $currentData->setIdPurchase($row['idPurchase']);
+            $currentData->setBillNum($row['billNum']);
+            $currentData->setIdProduct($row['idProduct']);
+            $currentData->setIdSupplier($row['idSupplier']);
+            $currentData->setDatePurchase($row['datePurchases']);
+            $currentData->setDescriptionPurchase($row['descriptionPurchases']);
+            $currentData->setTotalPurchase($row['totalPurchases']);
+            $currentData->setGrossPrice($row['grossPrice']);
+            $currentData->setNetPrice($row['netPrice']);
+            $currentData->setRecived($row['received']);
+            $currentData->setCanceled($row['canceled']);                       
+            array_push($array, $currentData);
+             //echo ''.$currentData->getIdSupplier().' '.$currentData->getIdProduct().'<br>';
+        }
+        //echo 'obtuvo los valores';
+        //exit;
+        mysqli_close($conn);
+        return $array;
+    }//fin función getSupplier   
     /**
      * Función que permite la obtención de todos los registros de 
      * un provedor de la base de datos
@@ -329,6 +393,58 @@ class purchaseData extends Data
         $answer = $row['price'];
         mysqli_close($conn);
         return $answer;
+    }
+    function getStock($idProduct) {
+
+        $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $result = mysqli_query($conn, "select idStock from `tbstock` where idProduct=" . $idProduct . " and idStore=1 ;");
+        $row = mysqli_fetch_assoc($result);
+        $answer = $row['idStock'];
+        mysqli_close($conn);
+        return $answer;
+    }
+ 
+    
+    function receivedPurchase($idPurchase,$idProduct,$quantity){
+        $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $result = mysqli_query($conn, "update tbpurchasingsupplier set received=1 where idPurchase=" . $idPurchase . " ;");
+        if($result){
+            $stock= $this->getStock($idProduct);
+            $queryUpdate = mysqli_query($conn, "update `tbstock` set `quantity`= quantity+" .
+                $quantity . "" .
+                " where `idStock`=" . $stock . ";");
+        mysqli_close($conn);
+        if ($queryUpdate){
+            return 'sucess';
+        } else {
+            return 'errorSQL';
+        } 
+        }else {
+            mysqli_close($conn);
+            return 'errorData';
+    }}
+    function receivedPurchaseDebts($idPurchase,$idProduct,$quantity){
+        $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $result = mysqli_query($conn, "update tbpurchasingsupplierpayable set received=1 where idPurchase=" . $idPurchase . " ;");
+        if($result){
+            $stock= $this->getStock($idProduct);            
+            
+            $queryUpdate = mysqli_query($conn, "update `tbstock` set `quantity`= quantity+" .
+                $quantity . " where `idStock`=" . $stock . ";");
+        mysqli_close($conn);
+        if ($queryUpdate){
+            return 'sucess';
+        } else {
+            return 'errorSQL ';
+        } 
+        }else {
+            mysqli_close($conn);
+            return 'errorData';
+        }
+        
     }
 
     

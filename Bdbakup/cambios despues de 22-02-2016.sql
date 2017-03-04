@@ -39,3 +39,4 @@ CREATE TABLE `tboutlay` (
 
 ALTER TABLE `tbpurchasingsupplier` CHANGE `typePay` `typePay` BIT(1) NULL;
 ALTER TABLE `tbpurchasingsupplierpayable` ADD PRIMARY KEY( `idPurchase`);
+ALTER TABLE `tboutlay` ADD PRIMARY KEY( `idOutlay`);
