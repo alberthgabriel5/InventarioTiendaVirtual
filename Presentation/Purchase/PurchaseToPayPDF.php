@@ -14,8 +14,8 @@ $htmlpdf='
         <title>Compras por Pagar</title>
     </head>
     <body> 
-    <h5><CENTER>Reporte de Compras por Pagar</CENTER><h5>
-        <table width="90%" border="1px" cellspacing="1" cellpadding="1"  >
+    <h5><CENTER>Reporte de Compras por Pagar</CENTER></h5>
+        <table width="100%" border="1px" cellspacing="1" cellpadding="1"  >
             <thead>
             <tr>
                 <th colspan="1"><strong>Provedor</strong></th> 
@@ -54,6 +54,7 @@ $htmlpdf.=' </tbody>
         </table>
     </body>
 </html>';
+
 
 $codigoHTML=utf8_encode($htmlpdf);
 $dompdf=new DOMPDF();

@@ -93,6 +93,18 @@ class purchaseBusiness extends purchaseData
         
         
     }
+    
+    public function getPurchase($idPurchase) {
+        return $this->purchaseData->getPurchase($idPurchase);
+    }
+
+    public function getPurchaseDebts($idPurchase) {
+        return $this->purchaseData->getPurchaseDebts($idPurchase);
+    }
+    public function getAllOutlay(): array {
+        return $this->purchaseData->getAllOutlay();
+    }
+
 
 
 
