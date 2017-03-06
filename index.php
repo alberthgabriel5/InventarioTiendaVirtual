@@ -11,7 +11,7 @@
         <a href="./Presentation/Supplier/supplierActiveInterface.php">Activar Proveedor</a>&nbsp;&nbsp;&nbsp;
         <br>Inventario 
         <a href="./Presentation/Stock/stockUpdateInterface.php">Actualizar Inventario</a>&nbsp;&nbsp;&nbsp;
-        <a href="./Presentation/Stock/outlayInterface.php">Actualizar Inventario</a>&nbsp;&nbsp;&nbsp;
+        <a href="./Presentation/Stock/outlayInterface.php">Egresos</a>&nbsp;&nbsp;&nbsp;
         <br>Compras 
         <a href="./Presentation/Purchase/PurchaseHistoryInterface.php">Historial de Compras</a>&nbsp;&nbsp;&nbsp;
         <a href="./Presentation/Purchase/PurchaseToPayInterface.php">Compras por Pagar</a>&nbsp;&nbsp;&nbsp;

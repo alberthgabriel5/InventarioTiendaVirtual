@@ -143,15 +143,13 @@ class purchaseData extends Data {
         //exit;
         mysqli_close($conn);
         return $array;
-    }
-
-//fin función getSupplier   
+    }//fin función getSupplier 
+    
     /**
      * Función que permite la obtención de todos los registros de 
      * provedores de la base de datos
      * @return array
      */
-
     function getAllPurchaseUnrecived() {
 
         $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
@@ -178,15 +176,13 @@ class purchaseData extends Data {
         //exit;
         mysqli_close($conn);
         return $array;
-    }
-
-//fin función getSupplier
+    }//fin función getSupplier
+    
     /**
      * Función que permite la obtención de todos los registros de 
      * provedores de la base de datos
      * @return array
      */
-
     function getAllPurchaseToPayUnrecived() {
 
         $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
