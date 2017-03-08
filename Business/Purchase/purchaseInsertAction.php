@@ -20,6 +20,6 @@ if ($purchase) {
         
         
 }else{
-       header('location: ../../Presentation/Stock/stockUpdateInterface.php?error'); 
+       header('location: ../../Presentation/Purchase/purchaseCreateInterface.php?error'); 
     }
     

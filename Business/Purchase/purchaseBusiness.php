@@ -1,7 +1,7 @@
 <?php
 include_once '../../Data/purchaseData.php';
 include_once '../../Domain/purchase.php';
-class purchaseBusiness extends purchaseData
+class purchaseBusiness 
 {
     private $purchaseData;
     
@@ -84,11 +84,11 @@ class purchaseBusiness extends purchaseData
         return $this->purchaseData->getStock($idProduct);
     }
 
-    public function receivedPurchase($idPurchase, $idProduct, $quantity): string {
+    public function receivedPurchase($idPurchase, $idProduct, $quantity){
         return $this->purchaseData->receivedPurchase($idPurchase, $idProduct, $quantity);
     }
 
-    public function receivedPurchaseDebts($idPurchase, $idProduct, $quantity): string {
+    public function receivedPurchaseDebts($idPurchase, $idProduct, $quantity) {
         return $this->purchaseData->receivedPurchaseDebts($idPurchase, $idProduct, $quantity);
         
         
@@ -101,7 +101,7 @@ class purchaseBusiness extends purchaseData
     public function getPurchaseDebts($idPurchase) {
         return $this->purchaseData->getPurchaseDebts($idPurchase);
     }
-    public function getAllOutlay(): array {
+    public function getAllOutlay(){
         return $this->purchaseData->getAllOutlay();
     }
 
